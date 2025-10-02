@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% comment %} Plantilla para mostrar el contenido de un tema {% endcomment %}
+
+{% block breadcrumb %}
+    {% comment %} Migajas de pan {% endcomment %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item"><a href="{% url '/' %}">Lecciones</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'leccion' leccion.id  %}">Lección {{leccion.numero}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tema {{tema.numero}}</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    
+<div class="container border border-1 mt-5 mx-auto p-4 " style="margin-bottom: 120px;">
+    <h2 class="mb-4">Lección {{leccion.numero}} {{leccion.titulo}}</h2>
+    
+    <div class="row row-cols-1 ">
+            <div class="col card p-0 mx-auto ">
+                <div class="card-header"> {{tema.numero}} {{tema.titulo}} </div>
+                <div class="card-body">
+                    {% comment %} <h5 class="card-title">{{tema.titulo}}</h5> {% endcomment %}
+                    <p class="card-text " style="text-align: justify;">{{tema.teoria|safe}}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    {% if idPrimerEjemplo != -1 %}
+                        <div><a href="{% url 'ejemplo' leccion.id tema.id idPrimerEjemplo  %}" class="btn btn-primary">Ver Ejemplos </a></div>
+                    {% else %}
+                        <div class="d-flex flex-column align-items-end">
+                            <p class="alert alert-danger" role="alert" >{{mensaje}}</p>
+                            <a href="{% url 'leccion' leccion.id %}" class="btn btn-primary"> Ir a lista de temas </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+    </div>
+
+    <div class="d-flex justify-content-end ">
+        <a href="{% url 'leccion' leccion.id  %}" class="btn btn-secondary mt-5">Regresar</a>
+    </div>
+
+</div>
+
+
+{% endblock content %}

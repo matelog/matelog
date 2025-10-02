@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% comment %} Plantilla para mostrar un ejercicio de un tema {% endcomment %}
+
+{% block breadcrumb %}
+    {% comment %} Migajas de pan {% endcomment %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item"><a href="{% url '/' %}">Lecciones</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'leccion' leccion.id  %}">Lección {{leccion.numero}}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'tema' leccion.id tema.id  %}">Tema {{tema.numero}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ejercicio {{ejercicio.numero}}</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+<div class="container border border-1 mt-5 mx-auto px-0" style="margin-bottom: 120px;">
+    <div class="bg-light p-2">
+        <h3 class="mt-0 mb-4">Tema {{tema.numero}} {{tema.titulo}}</h3>
+    </div>
+    
+    <div class="row row-cols-1 mx-3 my-3">
+        <div class="col card p-0 mx-auto ">
+            <div class="card-header d-flex justify-content-between">
+                
+                <h5  class="card-title text-success"> Ejercicio {{ejercicio.numero}} </h5>
+                <div class="d-flex flex-column align-items-end text-success">
+                    <p class="my-1">{{ejercicio.numero}} de <span class="fw-bold"> {{numTotalEjercicios}} </span> </p>
+                    <p class="my-1">Tipo de ejercicio: <span class="fw-bold"> {{ejercicio.idTipoEjercicio}} </span> </p>
+                </div>
+            
+            </div>
+
+            <div class="card-body">
+                <div class="d-flex justify-content-end ">
+                    <a class="btn btn-primary " href="{% url 'ejercicio' leccion.id tema.id ejercicio.id%}?ayuda" class="" >Ayuda</a>
+                </div>
+
+                <h5 class="card-title">Instrucción</h5>
+                <div class="card-text " style="text-align: justify;">{{ejercicio.instruccionEjercicio|safe}}</div>
+
+                <div class="container mt-5 mb-4 ">
+                    <div class="row ">
+                        <div class="col col-12  col-md-6  d-flex flex-column align-items-center">
+                            <h5 class="card-title text-center">Ejercicio</h5>
+                            <div class="card-text " style="text-align: justify;">{{ejercicio.ejercicio|safe}}</div>
+                        </div>  
+                
+                        {% if not request.session.respuestaEjercicio %}
+                            {% if form %} 
+                                <form action="" method="POST" class="col col-12  col-md-6  d-flex justify-content-center mt-3">
+                                    {% csrf_token %}
+                                    
+                                    <div class="d-flex justify-content-between align-items-end">
+                                        {{form|crispy}}                                
+                                        <button type="submit" class="btn btn-primary ms-3"> Enviar </button>
+                                    </div>
+                                </form>
+                            {% else %}
+                                <p class="alert alert-danger" role="alert" >{{mensaje}}</p>
+                            {% endif %}
+                        {% else %}
+                            <form action="" method="POST" class="col col-12  col-md-6  d-flex justify-content-center align-items-center mt-3">
+                                {% csrf_token %}
+                                <input type="hidden" name="reintentar" value="True"/>
+                                <button type="submit" class="btn btn-primary" > reintentar </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            
+                {% comment %} <button class="btn btn-primary" onclick="saludar()" >Saludar</button> {% endcomment %}
+        
+                {% if request.GET %}
+                    <div class="card mt-3">
+                        <div class="card-header"> Ayuda </div>
+                        <div class="card-body"> <p>{{ayuda}}</p> </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                {% if id_ejercicio_anterior %}
+                    <div><a href="{% url 'ejercicio' leccion.id tema.id id_ejercicio_anterior  %}" class="btn btn-success">Ejercicio anterior</a></div>
+                {% else %}
+                    <div><a href="" class="btn btn-success disabled" >Ejercicio anterior</a></div>
+                {% endif %}
+
+                {% if id_ejercicio_siguiente %}
+                    <div class="d-flex flex-column align-items-end"> 
+                        <div><a href="{% url 'ejercicio' leccion.id tema.id id_ejercicio_siguiente  %}" class="btn btn-success"> Ejercicio siguiente</a></div>
+
+                        {% if ejerciciosMinCumplidos %}
+                            <div class="d-flex justify-content-around">   
+                                <a href="{% url 'leccion' leccion.id %}" class="btn btn-primary  mt-4">Ir a temas</a>
+                            </div>
+                        {% endif %} 
+                    </div>
+                {% else %}
+                    <div class="d-flex flex-column align-items-end">
+                        <a href="{% url 'leccion' leccion.id %}" class="btn btn-primary" > Ir a lista de temas </a>
+                        <p class="alert alert-success mt-2" role="alert" >Felicidades este es el último ejercicios 😎</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end ">
+            <a href="{% url 'tema' leccion.id  tema.id %}" class="btn btn-secondary mt-5">Regresar a tema</a>
+        </div>
+
+    </div>
+</div>   
+
+
+    {% comment %} <h2>Respuesta</h2>
+    <p>{{respuesta}}</p>
+    <h2>Id de Ejercicio actual</h2>
+    <p>{{id_ejercicio}}</p>
+    <h2>Id de Ejercicio siguiente</h2>
+    <p>{{id_ejercicio_siguiente}}</p>
+    <h1>Id de ejercicio</h1>
+    <p>{{request.session.idEjercicio}}</p>
+    <h1>Post</h1>
+    <p>{{request.POST}}</p>
+    <h1>idTemaEstudiadoEjercicio</h1>
+    <p>{{request.session.idTemaEstudiadoEjercicio}}</p>
+    <h1>idEjercicio</h1>
+    <p>{{request.session.idEjercicio}}</p>
+    <h1>tiempoI_Ejercicio</h1>
+    <p>{{request.session.tiempoI_Ejercicio}}</p>
+    <h1>respuestaEjercicio</h1>
+    <p>{{request.session.respuestaEjercicio}}</p>
+    <h1>reintentar</h1>
+    <p>{{request.POST.reintentar}}</p> {% endcomment %}
+
+
+{% endblock content %}

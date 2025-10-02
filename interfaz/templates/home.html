@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% comment %} Plantilla para página principal, muestra todas las lecciones {% endcomment %}
+
+
+{% block content %}
+    <h1 class="text-center">Introducción a la lógica matemática</h1>
+    <div class=" d-flex justify-content-end m-0 py-0 px-2" > <a href="{% url 'tutorial' %}">Tutorial de la plataforma <a/> </div>
+
+    {% if listaLecciones %}
+        <div class="row justify-content-center m-0 p-3" >
+            {% for list in listaLecciones %}
+                    <div class="col-md-5 px-0 card m-3">
+                        <div class="col card text-center ">
+                            <div class="card-header {{list.clase}}"> Lección {{list.leccion.numero}} </div>
+                            <div class="card-body ">
+                                <h5 class="card-title">{{list.leccion.titulo}}</h5>
+                                <p class="card-text text-justify" style="text-align: justify;"> {{list.leccion.descripcion|truncatewords:"20"|safe}} </p>
+                                <div class="d-flex justify-content-end ">
+                                    <a href="{% url 'leccion' list.leccion.id %}" class="btn btn-primary mt-3">¡Aprender!</a>
+                                </div>
+                            </div>
+                            {% comment %} Panel de avance del tema {% endcomment %}
+                            <div class="card-footer text-muted {{list.clase}} text-center"> {{list.estadoLeccion}} </div>
+                    
+                            {% comment %} Avance del tema {% endcomment %}
+                            <div class="card-footer text-muted {{list.clase}} pt-3 px-1">
+                                <div class="container px-0">
+                                    <div class="row ">
+                                        
+                                        <div class="col-3"> 
+                                            <div style="font-size:0.8em"> Avance de lección</div>
+                                        </div>
+
+                                        <div class="col-9">
+                                            <div class="progress" style="background:#C9CCD5;">
+                                                {% if list.avance == 0 %}
+                                                    <span class="px-1"> 0% </span>
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="5" aria-valuemax="100"></div>
+                                                {% else %}
+                                                    <div class="progress-bar" role="progressbar" style="width: {{list.avance}}%;" aria-valuenow="25" aria-valuemin="5" aria-valuemax="100">
+                                                        {{list.avance}} %
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            {% endfor %}
+        </div>
+    
+    {% else %}
+        <p>{{mensaje}}</p>
+    {% endif %}
+   
+{% endblock content %}

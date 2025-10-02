@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% comment %} Plantilla para mostrar un ejemplo de un tema {% endcomment %}
+
+{% block breadcrumb %}
+    {% comment %} Migajas de pan {% endcomment %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item"><a href="{% url '/' %}">Lecciones</a></li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+ <div class="d-flex justify-content-center" >
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ex4WrZGrxec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
+{% endblock content %}

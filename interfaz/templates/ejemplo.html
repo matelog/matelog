@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% comment %} Plantilla para mostrar un ejemplo de un tema {% endcomment %}
+
+{% block breadcrumb %}
+    {% comment %} Migajas de pan {% endcomment %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item"><a href="{% url '/' %}">Lecciones</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'leccion' leccion.id  %}">Lección {{leccion.numero}}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'tema' leccion.id tema.id  %}">Tema {{tema.numero}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ejemplo {{ejemplo.numero}}</li>
+        </ol>
+    </nav>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+
+<div class="container border border-1 mt-3 mx-auto px-0" style="margin-bottom: 120px;">
+    <div class="bg-light p-2">
+        <h3 class="mt-0 mb-4">Tema {{tema.numero}} {{tema.titulo}}</h3>
+    </div>
+    
+    <div class="row row-cols-1 mx-3 my-3">
+        <div class="col card p-0 mx-auto ">
+            <div class="card-header d-flex justify-content-between">
+                <h5  class="card-title text-success"> Ejemplo {{ejemplo.numero}} </h5>
+                <div class="d-flex justify-content-end text-success"><p>{{ejemplo.numero}} de <span class="fw-bold"> {{numTotalEjemplos}} </span> </p></div>
+                
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">Explicación</h5>
+                <div class="card-text p-3 explicacion" style="text-align: justify;">{{ejemplo.explicacion|safe}}</div>
+                <h5 class="card-title ejemplo">Ejemplo</h5>
+                <div class="card-text p-3" style="text-align: justify;">{{ejemplo.ejemplo|safe}}</div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                {% if id_ejemplo_anterior %}
+                    <div><a href="{% url 'ejemplo' leccion.id tema.id id_ejemplo_anterior  %}" class="btn btn-success">Ejemplo anterior</a></div>
+                {% else %}
+                    <div><a href="" class="btn btn-success disabled" >Ejemplo anterior</a></div>
+                {% endif %}
+
+                {% if id_ejemplo_siguiente %}
+                    <div class="d-flex flex-column align-items-end">    
+                        <div><a href="{% url 'ejemplo' leccion.id tema.id id_ejemplo_siguiente  %}" class="btn btn-success">Ejemplo siguiente </a></div>
+                            
+                        {% if ejemplosMinCumplidos %}
+                            <div class="d-flex justify-content-around">   
+                                <a href="{% url 'ejercicio' leccion.id tema.id id_ejercicio_actual %}" class="btn btn-primary  mt-4">Ejercicios</a>
+                            </div>
+                        {% endif %}
+                {% else %}
+                    {% if id_ejercicio_actual %}
+                        <div class="d-flex flex-column align-items-end">
+                            <a href="{% url 'ejercicio' leccion.id tema.id id_ejercicio_actual %}" class="btn btn-primary">Ejercicio 1</a>
+                            <p class="alert alert-success mt-2" role="alert" >Felicidades completaste todos ejemplos 😎</p>
+                        </div>
+                    {% else %}
+                    {% comment %} En caso de no haber ejericios {% endcomment %}
+                        <div class="d-flex flex-column align-items-end">
+                            <p class="alert alert-danger" role="alert" >{{mensaje}}</p>
+                            <a href="{% url 'leccion' leccion.id %}" class="btn btn-primary" > Ir a lista de temas </a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                
+
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-end ">
+            <a href="{% url 'tema' leccion.id  tema.id %}" class="btn btn-secondary mt-5">Regresar a tema</a>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}
