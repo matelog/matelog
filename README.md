@@ -37,7 +37,7 @@ cd matelog
 ```
 ### 5. Crea un entorno virtual con la instrucción:
 ```bash
- python -m venv venv 
+py -3.9 -m venv venv 
 ```
 
 ### 6. Activa el entorno virtual con la instrucción:
@@ -50,7 +50,7 @@ python --version
 ```
 ### 8. Instala las dependencias que se encuentran en el archivo requerimientos.txt
 ```bash
-pip install -r requirements.txt
+pip install -r requerimientos.txt
 ```
 ### 9. Ejecuta el servidor de desarrollo con la instrucción:
 ```bash
@@ -61,6 +61,37 @@ python manage.py runserver
 http://127.0.0.1:8000/
 ```
 
+
+##Crear archivo de inicio automático
+
+1. Una vez que se ha ejecutado con éxito, en VSC selecciona "Nuevo archivo" y nómbralo "iniciar_matelog.bat" (se debe guardar en la misma carpeta de matelog donde se encuentran los archivos "manage.py", "requerimientos.txt" y la carpeta "venv").
+
+2. Copia y pega el siguiente contenido dentro del archivo en VSC:
+
+```bash
+@echo off
+echo ========================================
+echo   Iniciando Proyecto Django
+echo ========================================
+echo.
+echo Activando entorno virtual...
+call venv\Scripts\activate.bat
+echo.
+echo Verificando version de Python...
+python --version
+echo.
+echo Iniciando servidor Django...
+echo Presiona Ctrl+C para detener el servidor
+echo.
+python manage.py runserver
+```
+3. Guarda el archivo (ctrl+s) y la próxima vez que vayas a ejecutar MateLog solo tendrás que abrir el archivo "iniciar_matelog.bat"
+4. Abre el enlace
+```bash
+http://127.0.0.1:8000/
+```
+
 ## Autor ✒️
 
 * **Miguel Ángel** - *Proyecto de Residencias* - [Miguel-AngelRC](https://github.com/Miguel-AngelRC)
+* **Víctor Domínguez** - *Estudiante de maestría en ciencias de la computación*
