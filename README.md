@@ -1,7 +1,7 @@
 # Matelog
 
-Este proyecto es un Ambiente de aprendizaje para apoyo en la enseñanza de lógica matemática. 
-Como el nombre del proyecto lo indica es un ambiente que apoyará con la enseñanza de la lógica matemática a estudiantes con la ayuda de lecciones, temas, ejemplos y ejercicios que se deben de realizar. También se tiene el objetivo de recabar los datos generados por el estudiante con la interacción del ambiente de aprendizaje. Se almacenarán datos como: lecciones terminadas, temas terminados, avance en ejemplos y en ejercicios, las respuestas correctas y el número total de intentos que sean realizados en cada ejercicio, así como el tiempo en segundos que ha tardado en resolver el ejercicio o el tiempo (también en segundos) que ha tardado en estudiar un ejemplo. Se pretende que este ambiente de aprendizaje sea la base para la investigación de sistemas tutores inteligentes en el CENIDET y los datos recopilados sean útiles para realizar minería de datos educativos en un futuro.
+Este proyecto es un ambiente de aprendizaje para apoyo en la enseñanza de lógica matemática. 
+Se tiene el objetivo de recabar los datos generados por el estudiante con la interacción del ambiente de aprendizaje: lecciones terminadas, temas terminados, avance en ejemplos y en ejercicios, las respuestas correctas y el número total de intentos que sean realizados en cada ejercicio, así como el tiempo en segundos que ha tardado en resolver el ejercicio o en estudiar un ejemplo. A través de este ambiente de aprendizaje se realizará investigación de sistemas tutores inteligentes en el CENIDET.
 .
 
 ## Construido con 🛠️
@@ -12,22 +12,49 @@ Como el nombre del proyecto lo indica es un ambiente que apoyará con la enseña
 * Bootstrap 5
 * SQLite
 
-## Ocupar ambiente en enlace de prueba
-1. Ir a http://miguelrc.pythonanywhere.com/
-2. Hacer registro e iniciar sesión
-3. Ver tutorial de uso
-4. Estudiar lecciones, ejemplos y ejercicios
+## Ocupar MateLog de manera local
 
-Si desea ver los datos recopilados
-1. Ir a http://miguelrc.pythonanywhere.com/admin
-2. Iniciar sesión con usuario con permisos de lectura unicamente. 
-Usuario: panel
-Contraseña: 12345678@
+### Prerrequisitos
+Antes de comenzar, asegúrate de tener instalado:
+  - VisualStudioCode (VSC)
+  - Python 3.9.0 (https://www.python.org/ftp/python/3.9.0/python-3.9.0.exe)
+  - Git
+    
+1. Dentro de la terminal de VSC elegir la carpeta donde van a almacenar la carpeta de MateLog, con "cd" (change directory) y la dirección de la ubicación, por ejemplo:
+  cd C:\Users\Victor\Documents
+2. Se va a crear una carpeta con el nombre "matelog" dentro de la dirección que eligiron, así que ahora tienen que entrar a la carpeta, otra vez con cd y el nombre de la carpeta:
+  cd matelog
+3. Lo siguiente es elegir la versión de python que requiere MateLog, con la instrucción:
+  conda activate python39
+4. A continuación tienen que crear el entorno virtual donde se ejecutará MateLog, con la instrucción:
+  python -m venv miEntorno
+5. 
+6. 
+7.   
 
+8. 
+9. 
+10. 
+11. 
+12.   
+13. Hacer un git clone de https://github.com/matelog/matelog:
+     git clone https://github.com/matelog/matelog.git
+14. 
+   
+15. Crear un entorno virtual de Python
+16. 
+   a. Crear una carpeta y colocar dentro el proyecto clonado (Esta carpeta contendrá el entorno virtual y la carpeta del proyecto)
+17. Hacer registro e iniciar sesión
+18. Ver tutorial de uso
+19. Estudiar lecciones, ejemplos y ejercicios
+
+
+git clone https://github.com/matelog/matelog.git
+cd matelog
 
 ## Capturas
-![Captura](https://drive.google.com/uc?id=10mF_aZ8V6EGn1BmpgEVfgrUikvNa6FWO)
-![Captura](https://drive.google.com/uc?id=10eGbFN2tdUOK2zhyvRcNqZ6vq_fLu6FP)
+![Captura]()
+![Captura]()
 
 ## Autor ✒️
 
