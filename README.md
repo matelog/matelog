@@ -17,44 +17,49 @@ Se tiene el objetivo de recabar los datos generados por el estudiante con la int
 ### Prerrequisitos
 Antes de comenzar, asegúrate de tener instalado:
   - VisualStudioCode (VSC)
-  - Python 3.9.0 (https://www.python.org/ftp/python/3.9.0/python-3.9.0.exe)
+  - Python 3.9 (https://www.python.org/ftp/python/3.9.0/python-3.9.0.exe)
   - Git
     
-1. Dentro de la terminal de VSC elegir la carpeta donde van a almacenar la carpeta de MateLog, con "cd" (change directory) y la dirección de la ubicación, por ejemplo:
-  cd C:\Users\Victor\Documents
-2. Se va a crear una carpeta con el nombre "matelog" dentro de la dirección que eligiron, así que ahora tienen que entrar a la carpeta, otra vez con cd y el nombre de la carpeta:
-  cd matelog
-3. Lo siguiente es elegir la versión de python que requiere MateLog, con la instrucción:
-  conda activate python39
-4. A continuación tienen que crear el entorno virtual donde se ejecutará MateLog, con la instrucción:
-  python -m venv miEntorno
-5. 
-6. 
-7.   
-
-8. 
-9. 
-10. 
-11. 
-12.   
-13. Hacer un git clone de https://github.com/matelog/matelog:
-     git clone https://github.com/matelog/matelog.git
-14. 
+### 1. En VSC, abre una nueva terminal CMD:
+  - Presiona Ctrl + Shift  + Ñ
+  - Cuando aparezca la terminal haz clic en la flecha hacia abajo al lado del signo "+" y selecciona "Command Prompt" o "Símbolo del sistema"
+   <img width="351" height="382" alt="image" src="https://github.com/user-attachments/assets/77da6291-c1ed-4fb5-b2cf-4e8811360946" />
    
-15. Crear un entorno virtual de Python
-16. 
-   a. Crear una carpeta y colocar dentro el proyecto clonado (Esta carpeta contendrá el entorno virtual y la carpeta del proyecto)
-17. Hacer registro e iniciar sesión
-18. Ver tutorial de uso
-19. Estudiar lecciones, ejemplos y ejercicios
+### 2. Dentro de la terminal de VSC coloca la dirección donde van a almacenar la carpeta de MateLog, con "cd" (change directory) y la dirección de la ubicación, por ejemplo:
+  cd C:\Users\Victor\Documents 
 
+### 3. Hacer un git clone de https://github.com/matelog/matelog:
+     git clone https://github.com/matelog/matelog.git
 
-git clone https://github.com/matelog/matelog.git
+### 4. El paso anterior va a crear una carpeta con el nombre "matelog" dentro de la dirección que eligiron, así que ahora tienen que entrar a la carpeta, otra vez con cd y el nombre de la carpeta
+```bash
 cd matelog
+```
+### 5. Crea un entorno virtual con la instrucción:
+```bash
+ python -m venv venv 
+```
 
-## Capturas
-![Captura]()
-![Captura]()
+### 6. Activa el entorno virtual con la instrucción:
+```bash
+venv\Scripts\activate
+```
+### 7. Verifica que la versión que está activa de Python sea la 3.9 con la instrucción:
+```bash
+python --version
+```
+### 8. Instala las dependencias que se encuentran en el archivo requerimientos.txt
+```bash
+pip install -r requirements.txt
+```
+### 9. Ejecuta el servidor de desarrollo con la instrucción:
+```bash
+python manage.py runserver
+```
+### 10. Abre en un navegador la dirección:
+```bash
+http://127.0.0.1:8000/
+```
 
 ## Autor ✒️
 
