@@ -48,7 +48,7 @@ venv\Scripts\activate
 ```bash
 python --version
 ```
-### 8. Instala las dependencias que se encuentran en el archivo requerimientos.txt
+### 8. Instala las dependencias que se encuentran en el archivo requerimientos.txt:
 ```bash
 pip install -r requerimientos.txt
 ```
@@ -62,7 +62,7 @@ http://127.0.0.1:8000/
 ```
 
 
-##Crear archivo de inicio automático
+## Crear archivo de inicio automático
 
 1. Una vez que se ha ejecutado con éxito, en VSC selecciona "Nuevo archivo" y nómbralo "iniciar_matelog.bat" (se debe guardar en la misma carpeta de matelog donde se encuentran los archivos "manage.py", "requerimientos.txt" y la carpeta "venv").
 
